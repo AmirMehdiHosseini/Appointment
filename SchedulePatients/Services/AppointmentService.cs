@@ -6,21 +6,21 @@ using SchedulePatients.ViewModels;
 
 namespace SchedulePatients.Services
 {
-    public class AppointmentService (IAppointmentRepository appointmentRepository, IUnitOfWork unitOfWork): IAppointmentService
+    public class AppointmentService (IPatientRepository patientRepository,IPhysicianRepository physicianRepository,IAppointmentRepository appointmentRepository, IUnitOfWork unitOfWork): IAppointmentService
     {        
         public AppointmentViewModel[] GetAll()
         {
-            return appointmentRepository.GetAll().Select(X => new AppointmentViewModel(X.AppointmentDateTime, X.Patient, X.Physician, Appointment.Duration)).ToArray();
+            return appointmentRepository.GetAll().Select(X => new AppointmentViewModel(X.AppointmentDateTime, X.Patient!, X.Physician!, Appointment.Duration)).ToArray();
         }
 
         public AppointmentViewModel GetById(int id)
         {
             var entity = appointmentRepository.GetById(id);
-            return new AppointmentViewModel(entity!.AppointmentDateTime, entity.Patient,entity.Physician, Appointment.Duration);
+            return new AppointmentViewModel(entity!.AppointmentDateTime, entity.Patient!,entity.Physician!, Appointment.Duration);
         }
         public void Craete(CreateAppointmentDTO model)
-        { 
-            var entity = new Appointment(model.appointmentDateTime, model.patient, model.physician);
+        {
+            var entity = new Appointment(model.appointmentDateTime, patientRepository.GetById(model.patientID)! ,physicianRepository.GetById( model.physicianID)!);
             appointmentRepository.Create(entity);
             unitOfWork.Commit();
         }

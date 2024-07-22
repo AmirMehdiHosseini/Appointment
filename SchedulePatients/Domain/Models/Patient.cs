@@ -5,12 +5,11 @@ namespace SchedulePatients.Domain.Models
 {
     public class Patient(string? firstName, string? lastName, string? nationalNumber)
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
         public string? FirstName { get; set; } = firstName;
         public string? LastName { get; set; } = lastName;
-        //   public Appointment? Appointment { get; set; } = null;
         public string? NationalNumber { get; set; } = nationalNumber;
     }
 }

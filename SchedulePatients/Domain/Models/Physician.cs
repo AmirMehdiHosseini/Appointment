@@ -7,8 +7,8 @@ namespace SchedulePatients.Domain.Models
 {
     public class Physician(string? firstName, string? lastName, string? medicalCouncilNumber, string? fieldOfExpertise)
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
         public string? FirstName { get; set; } = firstName;
         public string? LastName { get; set; } = lastName;

@@ -9,6 +9,7 @@ namespace SchedulePatients.Infrastructure.DatabaseContext
         public DbSet<Physician> Physicians { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
+
         public ScheduelServiceContext(DbContextOptions<ScheduelServiceContext> options)
             : base(options)
         {
@@ -16,9 +17,12 @@ namespace SchedulePatients.Infrastructure.DatabaseContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            base.OnModelCreating(modelBuilder);
+            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //base.OnModelCreating(modelBuilder);
+
         }
+
+
     }
 }
 

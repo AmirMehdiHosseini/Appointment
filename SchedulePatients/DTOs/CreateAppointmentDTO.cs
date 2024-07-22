@@ -2,6 +2,5 @@
 
 namespace SchedulePatients.DTOs
 {
-    public record CreateAppointmentDTO(DateTime appointmentDateTime, Patient patient, Physician physician);
-
+    public record CreateAppointmentDTO(DateTime appointmentDateTime, int patientID, int physicianID);
 }
