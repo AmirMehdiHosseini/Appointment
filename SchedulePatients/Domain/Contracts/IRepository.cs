@@ -1,4 +1,5 @@
-﻿using SchedulePatients.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SchedulePatients.Domain.Models;
 
 namespace SchedulePatients.Domain.Contracts
 {

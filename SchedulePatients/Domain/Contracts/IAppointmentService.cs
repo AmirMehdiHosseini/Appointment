@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SchedulePatients.DTOs;
+using SchedulePatients.Application.Authentication.AppointmentRequests.Commands;
 using SchedulePatients.ViewModels;
 
 namespace SchedulePatients.Domain.Contracts
@@ -8,8 +8,8 @@ namespace SchedulePatients.Domain.Contracts
     {
         AppointmentViewModel[] GetAll();
         AppointmentViewModel GetById(int id);
-        void Craete(CreateAppointmentDTO model);
-        void Update(int id, UpdateAppointmentDTO model);
+        void Craete(CreateAppointmentCommand model);
+        void Update(int id, UpdateAppointmentViewModel model);
         void Delete(int id);
     }
 }

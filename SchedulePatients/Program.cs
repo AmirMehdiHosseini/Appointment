@@ -3,7 +3,7 @@ using SchedulePatients.Domain.Contracts;
 using SchedulePatients.Infrastructure.Repositories;
 using SchedulePatients.Infrastructure;
 using SchedulePatients.Infrastructure.DatabaseContext;
-using SchedulePatients.Services;
+using SchedulePatients.Application.Services;
 
 
 namespace SchedulePatients
@@ -24,6 +24,11 @@ namespace SchedulePatients
             builder.Services.AddScoped<IPhysicianService , PhysicianService>();
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
+            // Inject MediatR in to the program. 
+            builder.Services.AddMediatR(options =>
+            {
+                options.RegisterServicesFromAssemblies(typeof(Program).Assembly);
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

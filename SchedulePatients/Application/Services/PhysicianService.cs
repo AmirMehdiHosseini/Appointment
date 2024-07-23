@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchedulePatients.Application.Authentication.PhysicianRequest.Commands;
 using SchedulePatients.Domain.Contracts;
 using SchedulePatients.Domain.Models;
 using SchedulePatients.DTOs;
 using SchedulePatients.ViewModels;
 
-namespace SchedulePatients.Services
+namespace SchedulePatients.Application.Services
 {
-    public class PhysicianService (IPhysicianRepository physicianRepository, IUnitOfWork unitOfWork):IPhysicianService
+    public class PhysicianService(IPhysicianRepository physicianRepository, IUnitOfWork unitOfWork) : IPhysicianService
     {
         public PhysicianViewModel[] GetAll()
         {
@@ -18,13 +19,13 @@ namespace SchedulePatients.Services
             Physician? physician = physicianRepository!.GetById(id);
             return new PhysicianViewModel(physician!.FirstName, physician.LastName, physician.MedicalCouncilNumber, physician.FieldOfExpertise);
         }
-        public void Create([FromBody] CreatePhysicianDTO model)
+        public void Create([FromBody] CreatePhysicianCommand model)
         {
-            var entity = new Physician(model.FirstName, model.LastName, model.MedicalCouncilNumber,model.FieldOfExpertise);
+            var entity = new Physician(model.FirstName, model.LastName, model.MedicalCouncilNumber, model.FieldOfExpertise);
             physicianRepository!.Create(entity);
             unitOfWork?.Commit();
         }
-        public void Update(int id, UpdatePhysicianDTO model)
+        public void Update(int id, UpdatePhysicianViewModel model)
         {
             var entity = physicianRepository.GetById(id);
             entity!.FirstName = model.FirstName;
